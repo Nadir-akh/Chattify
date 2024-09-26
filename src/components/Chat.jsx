@@ -2,14 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import '../style/Chat.css';
 
 
-const chattify = (text) => {
+const chattify = (text) => { // Function to convert text to HTML elements
   const element = document.createElement('div');
   element.innerText = text;
   return element.innerHTML;
 };
 
 const Chat = ({ token }) => {
-
+ // State to manage messages, new message, error message, active conversation, and user information
   const [messages, setMessages] = useState(() => JSON.parse(localStorage.getItem('messages')) || []);
   const [newMessage, setNewMessage] = useState('');
   const [error, setError] = useState('');
@@ -41,6 +41,7 @@ const Chat = ({ token }) => {
     }
   ]);
 
+   // Fetch users from API
   const fetchUsers = useCallback(async () => {
     try {
       const response = await fetch('https://chatify-api.up.railway.app/users', {
@@ -54,11 +55,11 @@ const Chat = ({ token }) => {
       if (!response.ok) throw new Error('Could not fetch users');
    
     } catch {
-      setError('Could not fetch users');
+      setError('Could not fetch users'); // Set error message on failure
     }
   }, [token]);
 
-  
+  // Fetch users on component mount
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
@@ -79,10 +80,10 @@ const Chat = ({ token }) => {
       if (!response.ok) throw new Error('Could not fetch messages');
 
       const messagesData = await response.json();
-      setMessages(messagesData);
+      setMessages(messagesData); // Update state with fetched messages
       localStorage.setItem('messages', JSON.stringify(messagesData));
 
-      
+      // Add new conversation to state and localStorage if it doesn't already exist
       if (!conversations.some(convo => convo.id === activeConversation)) {
         const newConversation = { id: activeConversation, name: 'Add new conversation' };
         const updatedConversations = [...conversations, newConversation];
@@ -136,7 +137,7 @@ const Chat = ({ token }) => {
       const response = await fetch(`https://chatify-api.up.railway.app/messages/${messageId}`, {
         method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, // Using token for authentication
           'Content-Type': 'application/json',
         },
       });

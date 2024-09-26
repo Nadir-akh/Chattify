@@ -1,0 +1,20 @@
+.app {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 250px; 
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin: 1em 0;
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 1em;
+}

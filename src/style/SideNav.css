@@ -1,0 +1,41 @@
+.sidenav {
+  width: 250px;
+  background-color: #f4f4f4; /* Tidigare var(--chat-bg-color) */
+  padding: 1rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidenav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidenav ul li {
+  margin: 1rem 0;
+}
+
+.sidenav a, .sidenav .logout-button {
+  text-decoration: none;
+  color: #333; /* Tidigare var(--primary-color) */
+  display: block;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.sidenav a:hover, .sidenav .logout-button:hover {
+  background-color: #007bff; /* Blå färg på hover */
+  color: #fff;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333; /* Tidigare var(--primary-color) */
+}

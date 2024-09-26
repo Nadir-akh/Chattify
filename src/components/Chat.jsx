@@ -82,7 +82,7 @@ const Chat = ({ token }) => {
       setMessages(messagesData);
       localStorage.setItem('messages', JSON.stringify(messagesData));
 
-      // Add new conversation if not present in the list
+      
       if (!conversations.some(convo => convo.id === activeConversation)) {
         const newConversation = { id: activeConversation, name: 'Add new conversation' };
         const updatedConversations = [...conversations, newConversation];
@@ -94,12 +94,12 @@ const Chat = ({ token }) => {
     }
   }, [activeConversation, token, conversations]);
 
-  // Fetch messages whenever activeConversation or token changes
+ 
   useEffect(() => {
     fetchMessages();
   }, [fetchMessages]);
 
-  // Send a new message to the API
+  
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
 
@@ -131,7 +131,7 @@ const Chat = ({ token }) => {
     }
   };
 
-  const handleDeleteMessage = async (messageId) => { // Delete a specific message
+  const handleDeleteMessage = async (messageId) => { 
     try {
       const response = await fetch(`https://chatify-api.up.railway.app/messages/${messageId}`, {
         method: 'DELETE',
@@ -153,7 +153,7 @@ const Chat = ({ token }) => {
     }
   };
 
-  const SelectConversation = (conversation) => { // Set the active conversation
+  const SelectConversation = (conversation) => { 
     setActiveConversation(conversation.id);
     localStorage.setItem('conversationId', conversation.id);
   };
